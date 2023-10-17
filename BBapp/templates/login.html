@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Login{% endblock %}
+
+{% block page_content %}
+    {% if logged_in %}
+        <h1>Already logged in, would you like to logout?</h1>
+    {% else %}
+        <div class="page-header">
+            <h1>{% if email %}{% else %} Hello, please login with your email and password.{% endif %}</h1>
+            <h1>{% if email %} {% if validEmail %} Invalid email or password{% else %} Please use your UofT email.{% endif %}{% endif %}</h1>
+        </div>
+    {% endif %}
+    {{ wtf.quick_form(form) }}
+{% endblock %}
