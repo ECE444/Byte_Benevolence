@@ -1,0 +1,41 @@
+/* FILEPATH: /c:/Github/ECE444/Byte_Benevolence/static/main.css */
+/*static folder will hold all static files such as css, js, images, etc.*/
+
+/*some example styles from github copilot feel free to modify/remove as needed*/
+text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+h1 {
+    font-weight: bold;
+    color: #444;
+}
+
+link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
