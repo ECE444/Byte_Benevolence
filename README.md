@@ -15,3 +15,6 @@
 * on Mac
   - open terminal, navigate to the root of the repo
   - run "python runMac.py"
+
+### Project Management
+Our team is currently using Asana for project management, however, a link to the project cannot be provided due to the version being used
