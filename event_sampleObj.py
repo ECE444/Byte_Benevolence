@@ -16,7 +16,7 @@ event1.print_all_attributes()
 
 #showing the accessor/mutator methods
 event1.set_registration("Reserve your spot on CLNX")
-event1.add_accomendation("Coffee and Snacks will be provided")
+event1.add_accommodation("Coffee and Snacks will be provided")
 event1.set_requirement("Open to all students in Engineering!")
 event1.size = 70
 cohosts = [("Sam", "sam_faculty_member@utoronto.ca"), ("Kyle", "kyle_eng_member@utoronto.ca")]
@@ -26,3 +26,4 @@ event1.modify_datetime(event1_datetime)
 
 #print
 event1.print_all_attributes()
+

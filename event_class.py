@@ -7,14 +7,14 @@ class event:
 #MANDATORY fields: name, type, date/time, place, and details
 #These must be provided by user before an event can be created. (Inform user on front end, * for mandatory fields)
 
-    def __init__(self, event_name, event_type, dateTime, location, description, registeration=None, accomendation=None, requirement=None, size=None, additional_contact=None):
+    def __init__(self, event_name, event_type, dateTime, location, description, registeration=None, accommodation=None, requirement=None, size=None, additional_contact=None):
         self._name = event_name                  #str
         self.type = event_type                   #str   front-end: maybe have tags for user to select when creating event?
         self._time = dateTime                    #datetime obj
         self._place = location                   #str 
         self.details = description               #str
         self._booking = registeration            #front-end: let user select Y/N. If Y, make them input booking instructions as string. If N, pass reservation as "Not required" or just dont provide it during initialization
-        self.accomendation = accomendation       #str
+        self.accommodation = accommodation       #str
         self._requisite = requirement            #str
         if size is None:
             self.size = "no limit"        
@@ -84,13 +84,13 @@ class event:
     def get_location(self):
         return self._place
 
-    def add_accomendation(self, accomendate):
-        self.accomendation = accomendate
+    def add_accommodation(self, accommodate): 
+        self.accommodation = accommodate
 
-    def get_accomendation(self):
-        if(self.accomendation == None):
-            self.accomendation = "N/A"
-        return  self.accomendation
+    def get_accommodation(self):
+        if(self.accommodation == None):
+            self.accommodation = "N/A"
+        return  self.accommodation
 
     def add_cohost(self, new_contacts):
         if not isinstance(new_contacts, list):
@@ -120,7 +120,7 @@ class event:
         if self._contact == []:
             message = " None"
 
-        print("\nEvent name: " + self.get_name() + "\nEvent type: " + self.type + "\nTaking place on: " + self.get_datetime().strftime("%Y-%m-%d %H:%M") + "\nTaking place at: " + self.get_location() + "\nWhat is happening: " + self.details + "\nRegisteration: " + self.get_registration_details() + "\nAccomendations: " + self.get_accomendation() + "\nRequirements: " + self.get_requirement() + "\nEvent Size: " + str(self.size) + "\nCo-Organizers: " + message)
+        print("\nEvent name: " + self.get_name() + "\nEvent type: " + self.type + "\nTaking place on: " + self.get_datetime().strftime("%Y-%m-%d %H:%M") + "\nTaking place at: " + self.get_location() + "\nWhat is happening: " + self.details + "\nRegisteration: " + self.get_registration_details() + "\naccommodation: " + self.get_accommodation() + "\nRequirements: " + self.get_requirement() + "\nEvent Size: " + str(self.size) + "\nCo-Organizers: " + message)
 
 
 
