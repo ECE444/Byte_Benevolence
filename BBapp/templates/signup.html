@@ -1,0 +1,45 @@
+{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {%
+block content %}
+<div class="row" , style="background-color: #f9f9f9">
+  <div class="col-md-8">
+    <img
+      src="{{ url_for('static', filename='assets/signup_splash.jpg') }}"
+      alt="Splash Image"
+      class="img-fluid"
+      style="width: 100%; height: 950px"
+    />
+  </div>
+  <div class="col-md-2">
+    <h1 class="signup-header">Sign up</h1>
+    <div style="width: 300px">
+      {{ wtf.form_field(form.email) }} {{ wtf.form_field(form.name) }} {{
+      wtf.form_field(form.phone) }} {{ wtf.form_field(form.password) }} {{
+      wtf.form_field(form.confirmPassword) }} {{
+      wtf.form_field(form.clubRepresentative) }}
+
+      <div id="roleFormContainer" style="display: none">
+        {{ wtf.form_field(roleForm.clubName) }} {{
+        wtf.form_field(roleForm.clubRole) }}
+      </div>
+      {{wtf.form_field(form.submit)}}
+    </div>
+    <p class="signup-subtext">
+      Already have an account? <a href="/login">Login</a>
+    </p>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#clubRepresentative").val("No");
+    $("#clubRepresentative").change(function () {
+      if ($(this).val() == "Yes") {
+        $("#roleFormContainer").show();
+      } else {
+        $("#roleFormContainer").hide();
+      }
+    });
+  });
+</script>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+{% endblock %}

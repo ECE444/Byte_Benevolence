@@ -39,3 +39,26 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.signup-header{
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.signup-custom-submit-button {
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.signup-subtext{
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+

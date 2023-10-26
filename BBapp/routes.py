@@ -1,11 +1,19 @@
 from flask import Flask, render_template, session, redirect, url_for, flash, Blueprint
 from datetime import datetime
-from BBapp.forms import LoginForm, LogoutForm
+from  BBapp.forms import *
 
 home_page = Blueprint('home_page', __name__, template_folder='templates')
 @home_page.route('/')
 def home():
     return render_template('index.html', current_time=datetime.utcnow())
+
+
+signup_page = Blueprint('signup_page', __name__, template_folder='templates')
+@signup_page.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = SignupForm()
+    roleForm = RoleForm()
+    return render_template('signup.html', form = form , roleForm = roleForm)
 
 login_page = Blueprint('login_page', __name__, template_folder='templates')
 @login_page.route('/login', methods=['GET', 'POST'])
