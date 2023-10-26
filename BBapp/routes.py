@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, flash, Blueprint
+from flask import Flask, render_template, session, redirect, url_for, flash, Blueprint, request
 from datetime import datetime
 from  BBapp.forms import *
 
@@ -9,11 +9,50 @@ def home():
 
 
 signup_page = Blueprint('signup_page', __name__, template_folder='templates')
+
 @signup_page.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
     roleForm = RoleForm()
-    return render_template('signup.html', form = form , roleForm = roleForm)
+
+    if request.method == 'POST':
+        errors = []
+        signupUser = {}  # For now, just store in a dictionary; change this to User object later
+
+        if "utoronto" not in form.email.data:
+            errors.append("Please use a valid UofT email address")
+
+        if form.password.data != form.confirmPassword.data:
+            errors.append("Passwords do not match")
+
+        if form.clubRepresentative.data == 'Yes':
+            if not roleForm.clubName.data.strip():
+                errors.append("Please enter a club name")
+
+        if (len(errors) > 0):
+            return render_template('signup.html', form=form, roleForm=roleForm, errors=errors)
+
+        signupUser['email'] = form.email.data
+        signupUser['name'] = form.name.data
+        signupUser['phone'] = form.phone.data
+        signupUser['password'] = form.password.data
+
+        if form.clubRepresentative.data == 'No':
+            signupUser['clubRepresentative'] = False
+            signupUser['clubName'] = ""
+            signupUser['clubRole'] = ""
+        else:
+            signupUser['clubRepresentative'] = True
+            signupUser['clubName'] = roleForm.clubName.data
+            signupUser['clubRole'] = roleForm.clubRole.data
+
+        # call method to save user data to the database here
+        session['email'] = signupUser['email']
+        session['logged_in'] = True
+        return redirect(url_for('user_page.user'))
+
+    return render_template('signup.html', form=form, roleForm=roleForm, errors=[])
+
 
 login_page = Blueprint('login_page', __name__, template_folder='templates')
 @login_page.route('/login', methods=['GET', 'POST'])

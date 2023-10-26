@@ -11,27 +11,36 @@ block content %}
   </div>
   <div class="col-md-2">
     <h1 class="signup-header">Sign up</h1>
-    <div style="width: 300px">
-      {{ wtf.form_field(form.email) }} {{ wtf.form_field(form.name) }} {{
-      wtf.form_field(form.phone) }} {{ wtf.form_field(form.password) }} {{
-      wtf.form_field(form.confirmPassword) }} {{
-      wtf.form_field(form.clubRepresentative) }}
-
-      <div id="roleFormContainer" style="display: none">
-        {{ wtf.form_field(roleForm.clubName) }} {{
-        wtf.form_field(roleForm.clubRole) }}
-      </div>
-      {{wtf.form_field(form.submit)}}
+    {%for err in errors%}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ err }}
     </div>
+    {%endfor%}
+    <form method="post" action="/signup">
+    <div style="width: 300px">
+      {{ wtf.form_field(form.email) }}
+      {{ wtf.form_field(form.name) }}
+      {{wtf.form_field(form.phone) }} 
+      {{ wtf.form_field(form.password) }} 
+      {{wtf.form_field(form.confirmPassword) }} 
+      {{wtf.form_field(form.clubRepresentative) }}
+      <div id="roleFormContainer" style="display: none">
+        {{ wtf.form_field(roleForm.clubName, value=" ") }}
+        {{wtf.form_field(roleForm.clubRole) }}
+      </div>
+      <button type="submit" class="btn btn-primary">Create Account</button>
+    </div>
+    
     <p class="signup-subtext">
       Already have an account? <a href="/login">Login</a>
     </p>
   </div>
+  </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
-    $("#clubRepresentative").val("No");
     $("#clubRepresentative").change(function () {
       if ($(this).val() == "Yes") {
         $("#roleFormContainer").show();
