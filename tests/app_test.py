@@ -31,13 +31,3 @@ def test_signup(client):
     rv = signup(client, 'test@mail.utoronto.ca', 'test', '1234567890', 'password', 'password', 'Yes', 'Developer Club', 'President') #valid signup of club representative
     assert rv.status_code == 302 and rv.location == '/user'
 
-
-
-
-    
-
-
-
-
-
-
