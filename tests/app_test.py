@@ -2,11 +2,11 @@ import pytest
 from BBapp import app
 
 @pytest.fixture
-def client():
+def client(): #Peter
     client = app.test_client()
     yield client
 
-def signup(client, email, name, phone, password, confirmPassword, clubRepresentative, clubName, clubRole):
+def signup(client, email, name, phone, password, confirmPassword, clubRepresentative, clubName, clubRole): #Peter
     return client.post('/signup', data=dict(
         email=email,
         name=name,
@@ -18,7 +18,7 @@ def signup(client, email, name, phone, password, confirmPassword, clubRepresenta
         clubRole=clubRole
     ), follow_redirects=False)
 
-def test_signup(client): 
+def test_signup(client): #Peter
     """Test signup route"""
     rv = signup(client, 'test@mail.utoronto.ca', 'test', '1234567890', 'password', 'noMatchingPassword', 'No', '', '') #no matching passwords
     assert rv.status_code == 200 and "Passwords do not match" in str(rv.data)
