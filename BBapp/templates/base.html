@@ -44,11 +44,5 @@
 {{ super() }} 
 {{ moment.include_moment() }}
 <br>
-<div class="container">
-    <div class="timestamp">
-        <p>The local date and time is {{ moment(current_time).format('LLLL') }}.</p>
-        <p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
-    </div>
-</div>
 {% endblock %}
 {% endblock %}
