@@ -6,7 +6,6 @@ def client():
     client = app.test_client()
     yield client
 
-
 def signup(client, email, name, phone, password, confirmPassword, clubRepresentative, clubName, clubRole):
     return client.post('/signup', data=dict(
         email=email,
@@ -31,11 +30,6 @@ def test_signup(client):
     assert rv.status_code == 302 and rv.location == '/user'
     rv = signup(client, 'test@mail.utoronto.ca', 'test', '1234567890', 'password', 'password', 'Yes', 'Developer Club', 'President') #valid signup of club representative
     assert rv.status_code == 302 and rv.location == '/user'
-
-
-
-
-
 
 
 
