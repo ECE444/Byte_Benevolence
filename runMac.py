@@ -2,7 +2,6 @@ import os
 os.system('source venv/bin/activate')
 os.system('pip install -r requirements.txt')
 os.system('export FLASK_APP=BBapp')
-#disclaimer I don't have a mac so haven't tested this also keep in mind the first os command depends on what you named your virtual environment and where it is located
 
 from BBapp import app
 
