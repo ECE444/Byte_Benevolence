@@ -7,7 +7,7 @@ def test_user_dictionary(): #Lucas
     dict = testUser.dictionary()
     assert dict == {'firstname': "test", 'lastname': "user", 'email': "test.user@mail.utoronto.ca", 'phone': "1234567890", 'userID': 1, 'orgID': 1, 'orgRole': "President"}
 
-def test_user_mutators(): #Lucas
+def test_user_accesors_mutators(): #Lucas
     firstname = testUser.get_firstname()
     assert firstname == "test"
     lastname = testUser.get_lastname()
