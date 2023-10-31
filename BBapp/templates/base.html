@@ -18,10 +18,13 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/login">Login</a></li> 
+                <li><a href="/login">Login</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/user">Dashboard</a></li> 
+                <li><a href="/user">Dashboard</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/calendar">Calendar</a></li>
             </ul>
         </div>
    </div>
@@ -41,7 +44,7 @@
 
 {% block timestamp %}
 {% block scripts %}
-{{ super() }} 
+{{ super() }}
 {{ moment.include_moment() }}
 <br>
 {% endblock %}
