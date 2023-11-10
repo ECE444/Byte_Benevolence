@@ -215,10 +215,12 @@
     events.forEach(function(ev) {
       var div = createElement('div', 'event');
       var square = createElement('div', 'event-category ' + ev.color);
+      var time = createElement('div', '', ev.date);
       var span = createElement('span', '', ev.eventName);
 
       div.appendChild(square);
       div.appendChild(span);
+      div.appendChild(time);
       wrapper.appendChild(div);
     });
 
