@@ -25,7 +25,7 @@ button.onclick=(function () {
     if(current) {
       var self = this;
       window.setTimeout(function() {
-        self.openDay(current);
+        self.openDayDetails(current);
       }, 500);
     }
   }
@@ -44,16 +44,17 @@ button.onclick=(function () {
 
       this.title = createElement('h1');
 
-      var right = createElement('div', 'right');
-      right.addEventListener('click', function() { self.nextMonth(); });
+      //Left and right arrow, execute next month/prev month function when clicked
+      var rightArrow = createElement('div', 'right');
+      rightArrow.addEventListener('click', function() { self.nextMonth();});
 
-      var left = createElement('div', 'left');
-      left.addEventListener('click', function() { self.prevMonth(); });
+      var leftArrow = createElement('div', 'left');
+      leftArrow.addEventListener('click', function() { self.prevMonth();});
 
       //Append the Elements
       this.header.appendChild(this.title); 
-      this.header.appendChild(right);
-      this.header.appendChild(left);
+      this.header.appendChild(rightArrow);
+      this.header.appendChild(leftArrow);
       this.el.appendChild(this.header);
     }
 
@@ -74,9 +75,9 @@ button.onclick=(function () {
       this.oldMonth.addEventListener('webkitAnimationEnd', function() {
         self.oldMonth.parentNode.removeChild(self.oldMonth);
         self.month = createElement('div', 'month');
-        self.backFill();
-        self.currentMonth();
-        self.fowardFill();
+        self.AddDaysFromPriorMonth();
+        self.AddDaysFromCurrentMonth();
+        self.AddDaysFromNextMonth();
         self.el.appendChild(self.month);
         window.setTimeout(function() {
           self.month.className = 'month in ' + (self.next ? 'next' : 'prev');
@@ -85,14 +86,14 @@ button.onclick=(function () {
     } else {
         this.month = createElement('div', 'month');
         this.el.appendChild(this.month);
-        this.backFill();
-        this.currentMonth();
-        this.fowardFill();
+        this.AddDaysFromPriorMonth();
+        this.AddDaysFromCurrentMonth();
+        this.AddDaysFromNextMonth();
         this.month.className = 'month new';
     }
   }
 
-  Calendar.prototype.backFill = function() {
+  Calendar.prototype.AddDaysFromPriorMonth = function() {
     var clone = this.current.clone();
     var dayOfWeek = clone.day();
 
@@ -105,7 +106,7 @@ button.onclick=(function () {
     }
   }
 
-  Calendar.prototype.fowardFill = function() {
+  Calendar.prototype.AddDaysFromNextMonth = function() {
     var clone = this.current.clone().add('months', 1).subtract('days', 1);
     var dayOfWeek = clone.day();
 
@@ -116,7 +117,7 @@ button.onclick=(function () {
     }
   }
 
-  Calendar.prototype.currentMonth = function() {
+  Calendar.prototype.AddDaysFromCurrentMonth = function() {
     var clone = this.current.clone();
 
     while(clone.month() === this.current.month()) {
@@ -135,26 +136,21 @@ button.onclick=(function () {
   Calendar.prototype.drawDay = function(day) {
     var self = this;
     this.getWeek(day);
-
-    //Outer Day
     var outer = createElement('div', this.getDayClass(day));
     outer.addEventListener('click', function() {
-      self.openDay(this);
+      self.openDayDetails(this);
     });
 
-    //Day Name
+    var number = createElement('div', 'day-number', day.format('DD'));
     var name = createElement('div', 'day-name', day.format('ddd'));
 
-    //Day Number
-    var number = createElement('div', 'day-number', day.format('DD'));
 
-
-    //Events
+    //Events in compact form
     var events = createElement('div', 'day-events');
     this.drawEvents(day, events);
 
-    outer.appendChild(name);
     outer.appendChild(number);
+    outer.appendChild(name);
     outer.appendChild(events);
     this.week.appendChild(outer);
   }
@@ -185,7 +181,8 @@ button.onclick=(function () {
     return classes.join(' ');
   }
 
-  Calendar.prototype.openDay = function(el) {
+  //Details upon clicking a day
+  Calendar.prototype.openDayDetails = function(el) {
     var details;
     var dayNumber = +el.querySelectorAll('.day-number')[0].innerText || +el.querySelectorAll('.day-number')[0].textContent;
     var day = this.current.clone().date(dayNumber);
@@ -196,8 +193,8 @@ button.onclick=(function () {
     if(currentOpened && currentOpened.parentNode === el.parentNode) {
       details = currentOpened;
     } else {
-      //Close the open events on different week row
-      //currentOpened && currentOpened.parentNode.removeChild(currentOpened);
+
+      //If another day is currently open, close that day's details
       if(currentOpened) {
           currentOpened.parentNode.removeChild(currentOpened);
         currentOpened.className = 'details out';
@@ -206,7 +203,6 @@ button.onclick=(function () {
       //Create the Details Container
       details = createElement('div', 'details in');
 
-      //Create the event wrapper
       el.parentNode.appendChild(details);
     }
 
@@ -239,13 +235,14 @@ button.onclick=(function () {
     });
 
     if(!events.length) {
+      //If no events are on that day, write a placeholder wrapper displaying no events
       var div = createElement('div', 'event empty');
-      var span = createElement('span', '', 'No Events');
-
+      var span = createElement('span', '', 'No Events Today');
       div.appendChild(span);
       wrapper.appendChild(div);
     }
 
+    //When drawing events, remove all wrappers from currently drawn event
     if(currentWrapper) {
       currentWrapper.className = 'events out';
         currentWrapper.parentNode.removeChild(currentWrapper);
@@ -297,10 +294,6 @@ button.onclick=(function () {
     { eventName: 'Test4', calendar: 'Other', color: 'green' , date: new Date(2023, 11, 1, 19, 20, 0) }
   ];
 
-
-  function addDate(ev) {
-    
-  }
 
   var calendar = new Calendar('#calendar', data);
 
