@@ -129,6 +129,22 @@ username {
   color: rgba(255, 52, 20, 1);
 }
 
+.orange {
+  background: rgba(247, 167, 0, 1);
+}
+
+.green {
+  background: rgba(153, 198, 109, 1);
+}
+
+.entry.orange:after {
+  background: rgba(247, 167, 0, 1);
+}
+.entry.green:after {
+  background: rgba(153, 198, 109, 1);
+}
+
+
 .day-name {
   font-size: 9px;
   text-transform: uppercase;
@@ -141,7 +157,6 @@ username {
   font-size: 36px;
   letter-spacing: 2.5px;
 }
-
 
 .day .day-events {
   list-style: none;
@@ -163,9 +178,6 @@ username {
   line-height: 5px;
   margin: 0 1px;
 }
-
-.orange { background: rgba(247, 167, 0, 1); }
-.green { background: rgba(153, 198, 109, 1); }
 
 .details {
   position: relative;
@@ -197,12 +209,12 @@ username {
 }
 
 .events.in {
-  -webkit-animation: fadeIn .3s ease both;
-  -moz-animation: fadeIn .3s ease both;
-  animation: fadeIn .3s ease both;
-  -webkit-animation-delay: .3s;
-  -moz-animation-delay: .3s;
-  animation-delay: .3s;
+  -webkit-animation: fadeIn .2s ease both;
+  -moz-animation: fadeIn .2s ease both;
+  animation: fadeIn .2s ease both;
+  -webkit-animation-delay: .2s;
+  -moz-animation-delay: .2s;
+  animation-delay: .2s;
 }
 
 .details.out .events {
@@ -262,96 +274,179 @@ username {
   left: 14px;
 }
 
-.entry.orange:after { background: rgba(247, 167, 0, 1); }
-.entry.green:after { background: rgba(153, 198, 109, 1); }
-
 @-webkit-keyframes moveFromTopFade {
-  from { opacity: .3; height:0px; margin-top:0px; -webkit-transform: translateY(-100%); }
+  from {
+    opacity: .3;
+    height:0px;
+    margin-top:0px;
+    -webkit-transform: translateY(-100%);
+  }
 }
 @-moz-keyframes moveFromTopFade {
-  from { height:0px; margin-top:0px; -moz-transform: translateY(-100%); }
+  from {
+    height:0px;
+    margin-top:0px;
+    -moz-transform: translateY(-100%);
+  }
 }
 @keyframes moveFromTopFade {
-  from { height:0px; margin-top:0px; transform: translateY(-100%); }
+  from {
+    height:0px;
+    margin-top:0px;
+    transform: translateY(-100%);
+  }
 }
 
 @-webkit-keyframes moveToTopFade {
-  to { opacity: .3; height:0px; margin-top:0px; opacity: 0.3; -webkit-transform: translateY(-100%); }
+  to {
+    opacity: .3;
+    height:0px;
+    margin-top:0px;
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%);
+  }
 }
 @-moz-keyframes moveToTopFade {
-  to { height:0px; -moz-transform: translateY(-100%); }
+  to {
+    height:0px;
+    -moz-transform: translateY(-100%);
+  }
 }
 @keyframes moveToTopFade {
-  to { height:0px; transform: translateY(-100%); }
+  to {
+    height:0px;
+    transform: translateY(-100%);
+  }
 }
 
 @-webkit-keyframes MonthFadeUpNext {
-  to { opacity: 0; -webkit-transform: translateY(-100%) scale(.95); }
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(-100%) scale(.95);
+  }
 }
 @-moz-keyframes MonthFadeUpNext {
-  to { opacity: 0; -moz-transform: translateY(-100%); }
+  to {
+    opacity: 0;
+    -moz-transform: translateY(-100%);
+  }
 }
 @keyframes MonthFadeUpNext {
-  to { opacity: 0; -moz-transform: translateY(-100%); }
+  to {
+    opacity: 0;
+    -moz-transform: translateY(-100%);
+  }
 }
 
 @-webkit-keyframes MonthFadeDownNext {
-  from {opacity: 0; -webkit-transform: translateY(100%) scale(.95);}
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(100%) scale(.95);
+  }
 }
 @-moz-keyframes MonthFadeDownNext {
-  from {opacity: 0; -moz-transform: translateY(100%);}
+  from {
+    opacity: 0;
+    -moz-transform: translateY(100%);
+  }
 }
 @keyframes MonthFadeDownNext {
-  from {opacity: 0; -moz-transform: translateY(100%);}
+  from {
+    opacity: 0;
+    -moz-transform: translateY(100%);
+  }
 }
 
 @-webkit-keyframes MonthFadeDownPrevious {
-  to {opacity: 0; -webkit-transform: translateY(100%) scale(.95);}
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(100%) scale(.95);
+  }
 }
 @-moz-keyframes MonthFadeDownPrevious {
-  to {opacity: 0; -webkit-transform: translateY(100%);}
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+  }
 }
 @keyframes MonthFadeDownPrevious {
-  to {opacity: 0; -webkit-transform: translateY(100%);}
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+  }
 }
 
 @-webkit-keyframes MonthFadeUpPrevious {
-  from { opacity: 0; -webkit-transform: translateY(-100%) scale(.95);}
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-100%) scale(.95);
+  }
 }
+
 @-moz-keyframes MonthFadeUpPrevious {
-  from {opacity:0; -webkit-transform: translateY(-100%);}
+  from {
+    opacity:0;
+    -webkit-transform: translateY(-100%);
+  }
 }
 @keyframes MonthFadeUpPrevious {
-  from {opacity:0; -webkit-transform: translateY(-100%);}
+  from {
+    opacity:0;
+    -webkit-transform: translateY(-100%);
+  }
 }
 
 @-webkit-keyframes fadeIn  {
-  from {opacity:0;}
+  from {
+    opacity:0;
+  }
 }
 @-moz-keyframes fadeIn  {
-  from {opacity:0;}
+  from {
+    opacity:0;
+  }
 }
 @keyframes fadeIn  {
-  from {opacity:0;}
+  from {
+    opacity:0;
+  }
 }
 
 @-webkit-keyframes FadeOut  {
-  to {opacity:0;padding:0px;height:0px;}
+  to {
+    opacity:0;
+    adding:0px;
+    height:0px;
+  }
 }
 @-moz-keyframes FadeOut  {
-  to {opacity:0;padding:0px;height:0px;}
+  to {
+    opacity:0;
+    padding:0px;
+    height:0px;
+  }
 }
 @keyframes FadeOut  {
-  to {opacity:0;padding:0px;height:0px;}
+  to {
+    opacity:0;
+    padding:0px;
+    height:0px;
+  }
 }
 
 @-webkit-keyframes fadeOut {
-  to {opacity:0;}
+  to {
+    opacity:0;
+  }
 }
 @-moz-keyframes fadeOut {
-  to {opacity:0;}
+  to {
+    opacity:0;
+  }
 }
 @keyframes fadeOut {
-  to {opacity:0;}
+  to {
+    opacity:0;
+  }
 }
 
