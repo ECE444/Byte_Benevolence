@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='calendar_assets/style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <script src="{{ url_for('static', filename='calendar_assets/script.js') }}" defer></script>
+   <script src="https://code.jquery.com/jquery-3.1.0.js" ></script>
   </head>
 
 
 <username>{{ email }}'s Calendar</username>
+<button id="theButton">test</button>
 <div id="calendar"></div>
 {% endblock %}

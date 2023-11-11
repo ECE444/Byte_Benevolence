@@ -1,4 +1,18 @@
+
 !function() {
+  const button = document.getElementById("theButton")
+
+
+button.onclick=(function () {
+  $.ajax({
+    type: "POST",
+    url: "/receiver",
+    success: function (response) {
+      let x = JSON.stringify(response)
+      console.log(x);
+    },
+  });
+});
 
   var today = moment();
 
@@ -283,7 +297,6 @@
     { eventName: 'Test4', calendar: 'Other', color: 'green' , date: new Date(2023, 11, 1, 19, 20, 0) }
   ];
 
-  
 
   function addDate(ev) {
     

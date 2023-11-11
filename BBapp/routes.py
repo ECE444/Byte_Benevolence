@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, flash, Blueprint, request
+from flask import Flask, render_template, session, redirect, url_for, flash, Blueprint, request, jsonify
 from datetime import datetime
 from  BBapp.forms import *
 
@@ -92,3 +92,9 @@ calendar_page = Blueprint('calendar_page', __name__, template_folder='templates'
 @calendar_page.route('/calendar', methods=['GET', 'POST'])
 def calendar():
     return render_template('calendar.html', logged_in=session.get('logged_in'), email=session.get('email'), current_time=datetime.utcnow())
+
+@calendar_page.route("/receiver", methods=['GET', 'POST'])
+def postME():
+   data = {"name": "test1", "value": 0}
+   data = jsonify(data)
+   return data
